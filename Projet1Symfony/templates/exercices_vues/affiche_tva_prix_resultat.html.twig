@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ExercicesVuesController!{% endblock %}
+
+{% block body %}
+
+<h1>La TVA est de {{ tva }}</h1>
+<h1>Le prix HTVA est de {{ prix }}</h1>
+<h1>Le taux de la TVA est de {{ prix*tva/100 }}</h1>
+<h1>Le prix TVAC est de {{ prix*tva/100+prix }}</h1>
+
+{% endblock %}
