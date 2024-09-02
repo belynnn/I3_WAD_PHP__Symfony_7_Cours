@@ -16,7 +16,7 @@ class ExempleTwigController extends AbstractController
         ]);
     }
 
-    #[Route('/frites')]
+    #[Route('/frites', name: 'app_frites')]
     public function frites(): Response{
         $sauce = "Brasil";
         $sel = "Non";
@@ -29,7 +29,7 @@ class ExempleTwigController extends AbstractController
         return $this->render('frites/frites.html.twig', $vars);
     }
 
-    #[Route('/personne')]
+    #[Route('/personne', name:'app_personne')]
     public function personneShow(): Response{
         $personne = [
             'nom' => 'Lancelot',
