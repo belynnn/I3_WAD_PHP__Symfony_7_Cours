@@ -26,6 +26,9 @@ class Livre
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datePublication = null;
 
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $isbn = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Livre
     public function setDatePublication(?\DateTimeInterface $datePublication): static
     {
         $this->datePublication = $datePublication;
+
+        return $this;
+    }
+
+    public function getIsbn(): ?string
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(?string $isbn): static
+    {
+        $this->isbn = $isbn;
 
         return $this;
     }
