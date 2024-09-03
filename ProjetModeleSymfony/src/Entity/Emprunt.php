@@ -23,6 +23,14 @@ class Emprunt
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $commentaires = null;
 
+    #[ORM\ManyToOne(inversedBy: 'emprunts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Client $client = null;
+
+    #[ORM\ManyToOne(inversedBy: 'emprunts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Exemplaire $exemplaire = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +68,30 @@ class Emprunt
     public function setCommentaires(?string $commentaires): static
     {
         $this->commentaires = $commentaires;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): static
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    public function getExemplaire(): ?Exemplaire
+    {
+        return $this->exemplaire;
+    }
+
+    public function setExemplaire(?Exemplaire $exemplaire): static
+    {
+        $this->exemplaire = $exemplaire;
 
         return $this;
     }
