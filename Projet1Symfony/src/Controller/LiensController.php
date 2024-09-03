@@ -8,11 +8,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class LiensController extends AbstractController
 {
-    #[Route('/menu', name: 'app_accueil')]
+    #[Route('/menu', name: 'app_menu')]
     public function menu(): Response
     {
-        return $this->render('liens/menu.html.twig', [
-            'controller_name' => 'LiensController',
-        ]);
+        return $this->render('liens/menu.html.twig');
     }
 }

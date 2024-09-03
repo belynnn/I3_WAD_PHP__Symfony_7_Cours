@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+Les villes:
+
+{{ villes[0] }}<br>
+{{ villes[1] }}<br>
+{{ villes[2] }}<br>
+
+
+{% for ville in villes %}
+{{ ville }}
+<br>
+{% endfor %}
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+La date est: {{ uneDate.format ("Y-m-d") }}
+
+{{ dump (uneDate) }}
+
+La date est aussi: {{ uneDate.format ("Y-M-D" )}}
+
+
+
+{% endblock %}
