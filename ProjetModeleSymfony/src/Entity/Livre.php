@@ -37,9 +37,16 @@ class Livre
     #[ORM\OneToMany(targetEntity: Exemplaire::class, mappedBy: 'livre', orphanRemoval: true)]
     private Collection $exemplaires;
 
+    /**
+     * @var Collection<int, Auteur>
+     */
+    #[ORM\ManyToMany(targetEntity: Auteur::class, inversedBy: 'livres')]
+    private Collection $auteurs;
+
     public function __construct()
     {
         $this->exemplaires = new ArrayCollection();
+        $this->auteurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -133,6 +140,30 @@ class Livre
                 $exemplaire->setLivre(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Auteur>
+     */
+    public function getAuteurs(): Collection
+    {
+        return $this->auteurs;
+    }
+
+    public function addAuteur(Auteur $auteur): static
+    {
+        if (!$this->auteurs->contains($auteur)) {
+            $this->auteurs->add($auteur);
+        }
+
+        return $this;
+    }
+
+    public function removeAuteur(Auteur $auteur): static
+    {
+        $this->auteurs->removeElement($auteur);
 
         return $this;
     }
