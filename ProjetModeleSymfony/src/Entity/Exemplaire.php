@@ -16,6 +16,10 @@ class Exemplaire
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $etat = null;
 
+    #[ORM\ManyToOne(inversedBy: 'exemplaires')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Livre $livre = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +33,18 @@ class Exemplaire
     public function setEtat(?string $etat): static
     {
         $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getLivre(): ?Livre
+    {
+        return $this->livre;
+    }
+
+    public function setLivre(?Livre $livre): static
+    {
+        $this->livre = $livre;
 
         return $this;
     }

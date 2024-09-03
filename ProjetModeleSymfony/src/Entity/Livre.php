@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LivreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,17 @@ class Livre
 
     #[ORM\Column(length: 30, nullable: true)]
     private ?string $isbn = null;
+
+    /**
+     * @var Collection<int, Exemplaire>
+     */
+    #[ORM\OneToMany(targetEntity: Exemplaire::class, mappedBy: 'livre', orphanRemoval: true)]
+    private Collection $exemplaires;
+
+    public function __construct()
+    {
+        $this->exemplaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +103,36 @@ class Livre
     public function setIsbn(?string $isbn): static
     {
         $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Exemplaire>
+     */
+    public function getExemplaires(): Collection
+    {
+        return $this->exemplaires;
+    }
+
+    public function addExemplaire(Exemplaire $exemplaire): static
+    {
+        if (!$this->exemplaires->contains($exemplaire)) {
+            $this->exemplaires->add($exemplaire);
+            $exemplaire->setLivre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExemplaire(Exemplaire $exemplaire): static
+    {
+        if ($this->exemplaires->removeElement($exemplaire)) {
+            // set the owning side to null (unless already changed)
+            if ($exemplaire->getLivre() === $this) {
+                $exemplaire->setLivre(null);
+            }
+        }
 
         return $this;
     }
