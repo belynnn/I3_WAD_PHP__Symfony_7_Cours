@@ -31,8 +31,6 @@ class ExemplaireFixtures extends Fixture implements DependentFixtureInterface
 
             $manager->persist($exemplaire);
         }
-        // $product = new Product();
-        // $manager->persist($product);
 
         $manager->flush();
     }

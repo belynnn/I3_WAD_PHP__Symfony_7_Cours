@@ -12,7 +12,7 @@ class AeroportFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $faker = Factory::create("fr_FR");
+        $faker = Factory::create("fr_BE");
 
         for($i = 0; $i < 100; $i++){
             $aeroport = new Aeroport(
@@ -26,8 +26,6 @@ class AeroportFixtures extends Fixture
 
             $manager->persist($aeroport);
         }
-        // $product = new Product();
-        // $manager->persist($product);
 
         $manager->flush();
     }

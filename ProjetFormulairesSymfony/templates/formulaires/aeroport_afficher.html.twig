@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello FormulairesController!{% endblock %}
+
+{% block body %}
+
+<h1>Formulaire Aeroport</h1>
+
+{# FORMULAIRE ENTIER #}
+{{ form_start (unFormulaire) }}
+    {{ form_widget (unFormulaire) }}
+    <input type="submit" class="btn" value="Envoyer" />
+{{ form_end (unFormulaire) }}
+
+{# SANS LABEL #}
+{# {{ form_start(unFormulaire) }}
+    {{ form_widget(unFormulaire.code) }}
+    {{ form_widget(unFormulaire.nom) }}
+{{ form_end(unFormulaire, {render_rest: false}) }} #}
+
+{# AVEC LABEL #}
+
+{# {{ form_start(unFormulaire) }}
+    {{ form_row(unFormulaire.code) }}
+    {{ form_row(unFormulaire.nom) }}
+{{ form_end(unFormulaire, {render_rest: false}) }} #}
+
+{% endblock %}

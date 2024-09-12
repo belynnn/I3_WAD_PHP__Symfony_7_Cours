@@ -27,8 +27,6 @@ class LivreFixtures extends Fixture
 
             $manager->persist($livre);
         }
-        // $product = new Product();
-        // $manager->persist($product);
 
         $manager->flush();
     }
